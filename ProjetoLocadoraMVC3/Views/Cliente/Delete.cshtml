@@ -1,0 +1,89 @@
+﻿@model ProjetoLocadoraMVC3.Models.CLIENTE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>CLIENTE</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_CLIENTE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_CLIENTE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_CLIENTE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_CLIENTE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_SEXO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_SEXO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DT_NASCIMENTO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DT_NASCIMENTO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DS_ENDERECO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DS_ENDERECO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NR_ENDERECO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NR_ENDERECO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_BAIRRO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_BAIRRO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DS_COMPLEMENTO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DS_COMPLEMENTO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_CIDADE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_CIDADE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VL_SALDO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VL_SALDO)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

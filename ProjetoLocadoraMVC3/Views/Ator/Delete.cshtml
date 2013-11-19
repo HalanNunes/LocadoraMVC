@@ -1,0 +1,33 @@
+﻿@model ProjetoLocadoraMVC3.Models.ATOR
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ATOR</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_ATOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_ATOR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_ATOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_ATOR)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

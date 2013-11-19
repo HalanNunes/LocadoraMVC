@@ -1,0 +1,29 @@
+﻿@model ProjetoLocadoraMVC3.Models.ATOR
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ATOR</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_ATOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_ATOR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_ATOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_ATOR)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

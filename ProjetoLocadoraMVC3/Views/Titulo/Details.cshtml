@@ -1,0 +1,57 @@
+﻿@model ProjetoLocadoraMVC3.Models.TITULO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TITULO</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_TITULO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_TITULO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NM_TITULO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_TITULO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DS_SINOPSE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DS_SINOPSE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DS_ORIGEM_TITULO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DS_ORIGEM_TITULO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VL_ANO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VL_ANO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TIPO_TITULO.DS_TIPO_TITULO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TIPO_TITULO.DS_TIPO_TITULO)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

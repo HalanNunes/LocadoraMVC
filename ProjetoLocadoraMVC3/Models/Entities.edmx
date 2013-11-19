@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LOCADORAModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LOCADORAModelStoreContainer">
+          <EntitySet Name="ATOR" EntityType="LOCADORAModel.Store.ATOR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CLIENTE" EntityType="LOCADORAModel.Store.CLIENTE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COPIA" EntityType="LOCADORAModel.Store.COPIA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GENERO" EntityType="LOCADORAModel.Store.GENERO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LOCACAO" EntityType="LOCADORAModel.Store.LOCACAO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TIPO_TITULO" EntityType="LOCADORAModel.Store.TIPO_TITULO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TITULO" EntityType="LOCADORAModel.Store.TITULO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TITULO_ATOR" EntityType="LOCADORAModel.Store.TITULO_ATOR" store:Type="Tables" store:Schema="dbo" store:Name="TITULO_ATOR">
+            <DefiningQuery>SELECT 
+      [TITULO_ATOR].[CD_ATOR] AS [CD_ATOR], 
+      [TITULO_ATOR].[CD_TITULO] AS [CD_TITULO]
+      FROM [dbo].[TITULO_ATOR] AS [TITULO_ATOR]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TITULO_GENERO" EntityType="LOCADORAModel.Store.TITULO_GENERO" store:Type="Tables" store:Schema="dbo" store:Name="TITULO_GENERO">
+            <DefiningQuery>SELECT 
+      [TITULO_GENERO].[CD_GENERO] AS [CD_GENERO], 
+      [TITULO_GENERO].[CD_TITULO] AS [CD_TITULO]
+      FROM [dbo].[TITULO_GENERO] AS [TITULO_GENERO]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ATOR" Association="LOCADORAModel.Store.FK_ATOR">
+            <End Role="ATOR" EntitySet="ATOR" />
+            <End Role="TITULO_ATOR" EntitySet="TITULO_ATOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE" Association="LOCADORAModel.Store.FK_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="LOCACAO" EntitySet="LOCACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COPIA" Association="LOCADORAModel.Store.FK_COPIA">
+            <End Role="COPIA" EntitySet="COPIA" />
+            <End Role="LOCACAO" EntitySet="LOCACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GENERO" Association="LOCADORAModel.Store.FK_GENERO">
+            <End Role="GENERO" EntitySet="GENERO" />
+            <End Role="TITULO_GENERO" EntitySet="TITULO_GENERO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO" Association="LOCADORAModel.Store.FK_TITULO">
+            <End Role="TIPO_TITULO" EntitySet="TIPO_TITULO" />
+            <End Role="TITULO" EntitySet="TITULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO_ATOR" Association="LOCADORAModel.Store.FK_TITULO_ATOR">
+            <End Role="TITULO" EntitySet="TITULO" />
+            <End Role="TITULO_ATOR" EntitySet="TITULO_ATOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO_COPIA" Association="LOCADORAModel.Store.FK_TITULO_COPIA">
+            <End Role="TITULO" EntitySet="TITULO" />
+            <End Role="COPIA" EntitySet="COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO_GENERO" Association="LOCADORAModel.Store.FK_TITULO_GENERO">
+            <End Role="TITULO" EntitySet="TITULO" />
+            <End Role="TITULO_GENERO" EntitySet="TITULO_GENERO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ATOR">
+          <Key>
+            <PropertyRef Name="CD_ATOR" />
+          </Key>
+          <Property Name="CD_ATOR" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NM_ATOR" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CD_CLIENTE" />
+          </Key>
+          <Property Name="CD_CLIENTE" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NM_CLIENTE" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CD_SEXO" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="DT_NASCIMENTO" Type="datetime" Nullable="false" />
+          <Property Name="DS_ENDERECO" Type="varchar" MaxLength="100" />
+          <Property Name="NR_ENDERECO" Type="int" />
+          <Property Name="NM_BAIRRO" Type="varchar" MaxLength="50" />
+          <Property Name="DS_COMPLEMENTO" Type="varchar" MaxLength="100" />
+          <Property Name="NM_CIDADE" Type="varchar" MaxLength="100" />
+          <Property Name="VL_SALDO" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COPIA">
+          <Key>
+            <PropertyRef Name="CD_COPIA" />
+          </Key>
+          <Property Name="CD_COPIA" Type="bigint" Nullable="false" />
+          <Property Name="CD_TITULO" Type="bigint" Nullable="false" />
+          <Property Name="TP_COPIA" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="GENERO">
+          <Key>
+            <PropertyRef Name="CD_GENERO" />
+          </Key>
+          <Property Name="CD_GENERO" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DS_GENERO" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LOCACAO">
+          <Key>
+            <PropertyRef Name="DT_LOCACAO" />
+          </Key>
+          <Property Name="CD_CLIENTE" Type="bigint" Nullable="false" />
+          <Property Name="CD_COPIA" Type="bigint" Nullable="false" />
+          <Property Name="DT_LOCACAO" Type="datetime" Nullable="false" />
+          <Property Name="DT_DEVOLUCAO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TIPO_TITULO">
+          <Key>
+            <PropertyRef Name="CD_TIPO_TITULO" />
+          </Key>
+          <Property Name="CD_TIPO_TITULO" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DS_TIPO_TITULO" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="VL_CREDITOS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TITULO">
+          <Key>
+            <PropertyRef Name="CD_TITULO" />
+          </Key>
+          <Property Name="CD_TITULO" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NM_TITULO" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="DS_SINOPSE" Type="text" Nullable="false" />
+          <Property Name="DS_ORIGEM_TITULO" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="VL_ANO" Type="smallint" Nullable="false" />
+          <Property Name="CD_TIPO_TITULO" Type="bigint" Nullable="false" />
+          <Property Name="VL_TRAILER" Type="image" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'LOCADORA.dbo.TITULO_ATOR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TITULO_ATOR">
+          <Key>
+            <PropertyRef Name="CD_ATOR" />
+            <PropertyRef Name="CD_TITULO" />
+          </Key>
+          <Property Name="CD_ATOR" Type="bigint" Nullable="false" />
+          <Property Name="CD_TITULO" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'LOCADORA.dbo.TITULO_GENERO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TITULO_GENERO">
+          <Key>
+            <PropertyRef Name="CD_GENERO" />
+            <PropertyRef Name="CD_TITULO" />
+          </Key>
+          <Property Name="CD_GENERO" Type="bigint" Nullable="false" />
+          <Property Name="CD_TITULO" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ATOR">
+          <End Role="ATOR" Type="LOCADORAModel.Store.ATOR" Multiplicity="1" />
+          <End Role="TITULO_ATOR" Type="LOCADORAModel.Store.TITULO_ATOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATOR">
+              <PropertyRef Name="CD_ATOR" />
+            </Principal>
+            <Dependent Role="TITULO_ATOR">
+              <PropertyRef Name="CD_ATOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE">
+          <End Role="CLIENTE" Type="LOCADORAModel.Store.CLIENTE" Multiplicity="1" />
+          <End Role="LOCACAO" Type="LOCADORAModel.Store.LOCACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CD_CLIENTE" />
+            </Principal>
+            <Dependent Role="LOCACAO">
+              <PropertyRef Name="CD_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COPIA">
+          <End Role="COPIA" Type="LOCADORAModel.Store.COPIA" Multiplicity="1" />
+          <End Role="LOCACAO" Type="LOCADORAModel.Store.LOCACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COPIA">
+              <PropertyRef Name="CD_COPIA" />
+            </Principal>
+            <Dependent Role="LOCACAO">
+              <PropertyRef Name="CD_COPIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GENERO">
+          <End Role="GENERO" Type="LOCADORAModel.Store.GENERO" Multiplicity="1" />
+          <End Role="TITULO_GENERO" Type="LOCADORAModel.Store.TITULO_GENERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENERO">
+              <PropertyRef Name="CD_GENERO" />
+            </Principal>
+            <Dependent Role="TITULO_GENERO">
+              <PropertyRef Name="CD_GENERO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO">
+          <End Role="TIPO_TITULO" Type="LOCADORAModel.Store.TIPO_TITULO" Multiplicity="1" />
+          <End Role="TITULO" Type="LOCADORAModel.Store.TITULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_TITULO">
+              <PropertyRef Name="CD_TIPO_TITULO" />
+            </Principal>
+            <Dependent Role="TITULO">
+              <PropertyRef Name="CD_TIPO_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO_ATOR">
+          <End Role="TITULO" Type="LOCADORAModel.Store.TITULO" Multiplicity="1" />
+          <End Role="TITULO_ATOR" Type="LOCADORAModel.Store.TITULO_ATOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TITULO">
+              <PropertyRef Name="CD_TITULO" />
+            </Principal>
+            <Dependent Role="TITULO_ATOR">
+              <PropertyRef Name="CD_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO_COPIA">
+          <End Role="TITULO" Type="LOCADORAModel.Store.TITULO" Multiplicity="1" />
+          <End Role="COPIA" Type="LOCADORAModel.Store.COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TITULO">
+              <PropertyRef Name="CD_TITULO" />
+            </Principal>
+            <Dependent Role="COPIA">
+              <PropertyRef Name="CD_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO_GENERO">
+          <End Role="TITULO" Type="LOCADORAModel.Store.TITULO" Multiplicity="1" />
+          <End Role="TITULO_GENERO" Type="LOCADORAModel.Store.TITULO_GENERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TITULO">
+              <PropertyRef Name="CD_TITULO" />
+            </Principal>
+            <Dependent Role="TITULO_GENERO">
+              <PropertyRef Name="CD_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LOCADORAModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LOCADORAEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ATOR" EntityType="LOCADORAModel.ATOR" />
+          <EntitySet Name="CLIENTE" EntityType="LOCADORAModel.CLIENTE" />
+          <EntitySet Name="COPIA" EntityType="LOCADORAModel.COPIA" />
+          <EntitySet Name="GENERO" EntityType="LOCADORAModel.GENERO" />
+          <EntitySet Name="LOCACAO" EntityType="LOCADORAModel.LOCACAO" />
+          <EntitySet Name="TIPO_TITULO" EntityType="LOCADORAModel.TIPO_TITULO" />
+          <EntitySet Name="TITULO" EntityType="LOCADORAModel.TITULO" />
+          <AssociationSet Name="FK_CLIENTE" Association="LOCADORAModel.FK_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="LOCACAO" EntitySet="LOCACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COPIA" Association="LOCADORAModel.FK_COPIA">
+            <End Role="COPIA" EntitySet="COPIA" />
+            <End Role="LOCACAO" EntitySet="LOCACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO_COPIA" Association="LOCADORAModel.FK_TITULO_COPIA">
+            <End Role="TITULO" EntitySet="TITULO" />
+            <End Role="COPIA" EntitySet="COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TITULO" Association="LOCADORAModel.FK_TITULO">
+            <End Role="TIPO_TITULO" EntitySet="TIPO_TITULO" />
+            <End Role="TITULO" EntitySet="TITULO" />
+          </AssociationSet>
+          <AssociationSet Name="TITULO_ATOR" Association="LOCADORAModel.TITULO_ATOR">
+            <End Role="ATOR" EntitySet="ATOR" />
+            <End Role="TITULO" EntitySet="TITULO" />
+          </AssociationSet>
+          <AssociationSet Name="TITULO_GENERO" Association="LOCADORAModel.TITULO_GENERO">
+            <End Role="GENERO" EntitySet="GENERO" />
+            <End Role="TITULO" EntitySet="TITULO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ATOR">
+          <Key>
+            <PropertyRef Name="CD_ATOR" />
+          </Key>
+          <Property Name="CD_ATOR" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NM_ATOR" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TITULO" Relationship="LOCADORAModel.TITULO_ATOR" FromRole="ATOR" ToRole="TITULO" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CD_CLIENTE" />
+          </Key>
+          <Property Name="CD_CLIENTE" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NM_CLIENTE" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CD_SEXO" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="DT_NASCIMENTO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DS_ENDERECO" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NR_ENDERECO" Type="Int32" />
+          <Property Name="NM_BAIRRO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DS_COMPLEMENTO" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NM_CIDADE" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="VL_SALDO" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LOCACAO" Relationship="LOCADORAModel.FK_CLIENTE" FromRole="CLIENTE" ToRole="LOCACAO" />
+        </EntityType>
+        <EntityType Name="COPIA">
+          <Key>
+            <PropertyRef Name="CD_COPIA" />
+          </Key>
+          <Property Name="CD_COPIA" Type="Int64" Nullable="false" />
+          <Property Name="CD_TITULO" Type="Int64" Nullable="false" />
+          <Property Name="TP_COPIA" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="LOCACAO" Relationship="LOCADORAModel.FK_COPIA" FromRole="COPIA" ToRole="LOCACAO" />
+          <NavigationProperty Name="TITULO" Relationship="LOCADORAModel.FK_TITULO_COPIA" FromRole="COPIA" ToRole="TITULO" />
+        </EntityType>
+        <EntityType Name="GENERO">
+          <Key>
+            <PropertyRef Name="CD_GENERO" />
+          </Key>
+          <Property Name="CD_GENERO" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_GENERO" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TITULO" Relationship="LOCADORAModel.TITULO_GENERO" FromRole="GENERO" ToRole="TITULO" />
+        </EntityType>
+        <EntityType Name="LOCACAO">
+          <Key>
+            <PropertyRef Name="DT_LOCACAO" />
+          </Key>
+          <Property Name="CD_CLIENTE" Type="Int64" Nullable="false" />
+          <Property Name="CD_COPIA" Type="Int64" Nullable="false" />
+          <Property Name="DT_LOCACAO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DT_DEVOLUCAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CLIENTE" Relationship="LOCADORAModel.FK_CLIENTE" FromRole="LOCACAO" ToRole="CLIENTE" />
+          <NavigationProperty Name="COPIA" Relationship="LOCADORAModel.FK_COPIA" FromRole="LOCACAO" ToRole="COPIA" />
+        </EntityType>
+        <EntityType Name="TIPO_TITULO">
+          <Key>
+            <PropertyRef Name="CD_TIPO_TITULO" />
+          </Key>
+          <Property Name="CD_TIPO_TITULO" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_TIPO_TITULO" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="VL_CREDITOS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TITULO" Relationship="LOCADORAModel.FK_TITULO" FromRole="TIPO_TITULO" ToRole="TITULO" />
+        </EntityType>
+        <EntityType Name="TITULO">
+          <Key>
+            <PropertyRef Name="CD_TITULO" />
+          </Key>
+          <Property Name="CD_TITULO" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NM_TITULO" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DS_SINOPSE" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DS_ORIGEM_TITULO" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="VL_ANO" Type="Int16" Nullable="false" />
+          <Property Name="CD_TIPO_TITULO" Type="Int64" Nullable="false" />
+          <Property Name="VL_TRAILER" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="COPIA" Relationship="LOCADORAModel.FK_TITULO_COPIA" FromRole="TITULO" ToRole="COPIA" />
+          <NavigationProperty Name="TIPO_TITULO" Relationship="LOCADORAModel.FK_TITULO" FromRole="TITULO" ToRole="TIPO_TITULO" />
+          <NavigationProperty Name="ATOR" Relationship="LOCADORAModel.TITULO_ATOR" FromRole="TITULO" ToRole="ATOR" />
+          <NavigationProperty Name="GENERO" Relationship="LOCADORAModel.TITULO_GENERO" FromRole="TITULO" ToRole="GENERO" />
+        </EntityType>
+        <Association Name="FK_CLIENTE">
+          <End Role="CLIENTE" Type="LOCADORAModel.CLIENTE" Multiplicity="1" />
+          <End Role="LOCACAO" Type="LOCADORAModel.LOCACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CD_CLIENTE" />
+            </Principal>
+            <Dependent Role="LOCACAO">
+              <PropertyRef Name="CD_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COPIA">
+          <End Role="COPIA" Type="LOCADORAModel.COPIA" Multiplicity="1" />
+          <End Role="LOCACAO" Type="LOCADORAModel.LOCACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COPIA">
+              <PropertyRef Name="CD_COPIA" />
+            </Principal>
+            <Dependent Role="LOCACAO">
+              <PropertyRef Name="CD_COPIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO_COPIA">
+          <End Role="TITULO" Type="LOCADORAModel.TITULO" Multiplicity="1" />
+          <End Role="COPIA" Type="LOCADORAModel.COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TITULO">
+              <PropertyRef Name="CD_TITULO" />
+            </Principal>
+            <Dependent Role="COPIA">
+              <PropertyRef Name="CD_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TITULO">
+          <End Role="TIPO_TITULO" Type="LOCADORAModel.TIPO_TITULO" Multiplicity="1" />
+          <End Role="TITULO" Type="LOCADORAModel.TITULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_TITULO">
+              <PropertyRef Name="CD_TIPO_TITULO" />
+            </Principal>
+            <Dependent Role="TITULO">
+              <PropertyRef Name="CD_TIPO_TITULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TITULO_ATOR">
+          <End Role="ATOR" Type="LOCADORAModel.ATOR" Multiplicity="*" />
+          <End Role="TITULO" Type="LOCADORAModel.TITULO" Multiplicity="*" />
+        </Association>
+        <Association Name="TITULO_GENERO">
+          <End Role="GENERO" Type="LOCADORAModel.GENERO" Multiplicity="*" />
+          <End Role="TITULO" Type="LOCADORAModel.TITULO" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LOCADORAModelStoreContainer" CdmEntityContainer="LOCADORAEntities">
+          <EntitySetMapping Name="ATOR">
+            <EntityTypeMapping TypeName="LOCADORAModel.ATOR">
+              <MappingFragment StoreEntitySet="ATOR">
+                <ScalarProperty Name="CD_ATOR" ColumnName="CD_ATOR" />
+                <ScalarProperty Name="NM_ATOR" ColumnName="NM_ATOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="LOCADORAModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="CD_CLIENTE" ColumnName="CD_CLIENTE" />
+                <ScalarProperty Name="NM_CLIENTE" ColumnName="NM_CLIENTE" />
+                <ScalarProperty Name="CD_SEXO" ColumnName="CD_SEXO" />
+                <ScalarProperty Name="DT_NASCIMENTO" ColumnName="DT_NASCIMENTO" />
+                <ScalarProperty Name="DS_ENDERECO" ColumnName="DS_ENDERECO" />
+                <ScalarProperty Name="NR_ENDERECO" ColumnName="NR_ENDERECO" />
+                <ScalarProperty Name="NM_BAIRRO" ColumnName="NM_BAIRRO" />
+                <ScalarProperty Name="DS_COMPLEMENTO" ColumnName="DS_COMPLEMENTO" />
+                <ScalarProperty Name="NM_CIDADE" ColumnName="NM_CIDADE" />
+                <ScalarProperty Name="VL_SALDO" ColumnName="VL_SALDO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COPIA">
+            <EntityTypeMapping TypeName="LOCADORAModel.COPIA">
+              <MappingFragment StoreEntitySet="COPIA">
+                <ScalarProperty Name="CD_COPIA" ColumnName="CD_COPIA" />
+                <ScalarProperty Name="CD_TITULO" ColumnName="CD_TITULO" />
+                <ScalarProperty Name="TP_COPIA" ColumnName="TP_COPIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENERO">
+            <EntityTypeMapping TypeName="LOCADORAModel.GENERO">
+              <MappingFragment StoreEntitySet="GENERO">
+                <ScalarProperty Name="CD_GENERO" ColumnName="CD_GENERO" />
+                <ScalarProperty Name="DS_GENERO" ColumnName="DS_GENERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCACAO">
+            <EntityTypeMapping TypeName="LOCADORAModel.LOCACAO">
+              <MappingFragment StoreEntitySet="LOCACAO">
+                <ScalarProperty Name="CD_CLIENTE" ColumnName="CD_CLIENTE" />
+                <ScalarProperty Name="CD_COPIA" ColumnName="CD_COPIA" />
+                <ScalarProperty Name="DT_LOCACAO" ColumnName="DT_LOCACAO" />
+                <ScalarProperty Name="DT_DEVOLUCAO" ColumnName="DT_DEVOLUCAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_TITULO">
+            <EntityTypeMapping TypeName="LOCADORAModel.TIPO_TITULO">
+              <MappingFragment StoreEntitySet="TIPO_TITULO">
+                <ScalarProperty Name="CD_TIPO_TITULO" ColumnName="CD_TIPO_TITULO" />
+                <ScalarProperty Name="DS_TIPO_TITULO" ColumnName="DS_TIPO_TITULO" />
+                <ScalarProperty Name="VL_CREDITOS" ColumnName="VL_CREDITOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TITULO">
+            <EntityTypeMapping TypeName="LOCADORAModel.TITULO">
+              <MappingFragment StoreEntitySet="TITULO">
+                <ScalarProperty Name="CD_TITULO" ColumnName="CD_TITULO" />
+                <ScalarProperty Name="NM_TITULO" ColumnName="NM_TITULO" />
+                <ScalarProperty Name="DS_SINOPSE" ColumnName="DS_SINOPSE" />
+                <ScalarProperty Name="DS_ORIGEM_TITULO" ColumnName="DS_ORIGEM_TITULO" />
+                <ScalarProperty Name="VL_ANO" ColumnName="VL_ANO" />
+                <ScalarProperty Name="CD_TIPO_TITULO" ColumnName="CD_TIPO_TITULO" />
+                <ScalarProperty Name="VL_TRAILER" ColumnName="VL_TRAILER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TITULO_ATOR" TypeName="LOCADORAModel.TITULO_ATOR" StoreEntitySet="TITULO_ATOR">
+            <EndProperty Name="ATOR">
+              <ScalarProperty Name="CD_ATOR" ColumnName="CD_ATOR" />
+            </EndProperty>
+            <EndProperty Name="TITULO">
+              <ScalarProperty Name="CD_TITULO" ColumnName="CD_TITULO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TITULO_GENERO" TypeName="LOCADORAModel.TITULO_GENERO" StoreEntitySet="TITULO_GENERO">
+            <EndProperty Name="GENERO">
+              <ScalarProperty Name="CD_GENERO" ColumnName="CD_GENERO" />
+            </EndProperty>
+            <EndProperty Name="TITULO">
+              <ScalarProperty Name="CD_TITULO" ColumnName="CD_TITULO" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

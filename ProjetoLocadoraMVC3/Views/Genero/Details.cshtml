@@ -1,0 +1,29 @@
+﻿@model ProjetoLocadoraMVC3.Models.GENERO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>GENERO</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CD_GENERO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CD_GENERO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DS_GENERO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DS_GENERO)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,108 @@
+﻿@model ProjetoLocadoraMVC3.Models.CLIENTE
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CLIENTE</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CD_CLIENTE)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CD_CLIENTE)
+            @Html.ValidationMessageFor(model => model.CD_CLIENTE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NM_CLIENTE)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NM_CLIENTE)
+            @Html.ValidationMessageFor(model => model.NM_CLIENTE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CD_SEXO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CD_SEXO)
+            @Html.ValidationMessageFor(model => model.CD_SEXO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DT_NASCIMENTO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DT_NASCIMENTO)
+            @Html.ValidationMessageFor(model => model.DT_NASCIMENTO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DS_ENDERECO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DS_ENDERECO)
+            @Html.ValidationMessageFor(model => model.DS_ENDERECO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NR_ENDERECO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NR_ENDERECO)
+            @Html.ValidationMessageFor(model => model.NR_ENDERECO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NM_BAIRRO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NM_BAIRRO)
+            @Html.ValidationMessageFor(model => model.NM_BAIRRO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DS_COMPLEMENTO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DS_COMPLEMENTO)
+            @Html.ValidationMessageFor(model => model.DS_COMPLEMENTO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NM_CIDADE)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NM_CIDADE)
+            @Html.ValidationMessageFor(model => model.NM_CIDADE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VL_SALDO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VL_SALDO)
+            @Html.ValidationMessageFor(model => model.VL_SALDO)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

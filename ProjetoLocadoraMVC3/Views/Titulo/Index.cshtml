@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoLocadoraMVC3.Models.TITULO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CD_TITULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NM_TITULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DS_SINOPSE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DS_ORIGEM_TITULO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VL_ANO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_TITULO.DS_TIPO_TITULO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CD_TITULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NM_TITULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DS_SINOPSE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DS_ORIGEM_TITULO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VL_ANO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_TITULO.DS_TIPO_TITULO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
